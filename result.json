@@ -1,0 +1,1288 @@
+{
+	"_totalUsage": {
+		"status": {
+			"type": "pending"
+		}
+	},
+	"_finishReason": {
+		"status": {
+			"type": "pending"
+		}
+	},
+	"_steps": {
+		"status": {
+			"type": "pending"
+		}
+	},
+	"includeRawChunks": false,
+	"tools": {
+		"search": {
+			"description": "Search across contacts and companies using natural language. Use this before creating new records to avoid duplicates.",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"query": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false,
+								"description": "Natural language search query"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": ["query"]
+				}
+			}
+		},
+		"searchCompanies": {
+			"description": "Search for companies by name, industry, or description",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"query": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false,
+								"description": "Natural language search query"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": ["query"]
+				}
+			}
+		},
+		"listContacts": {
+			"description": "List all contacts, optionally filtered by company",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"companyId": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional",
+								"description": "Filter by company ID"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": ["companyId"]
+				}
+			}
+		},
+		"createContact": {
+			"description": "Create a new contact. ALWAYS search first to avoid duplicates.",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"firstName": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"lastName": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"email": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"phone": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"jobTitle": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"companyId": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"companyName": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional",
+								"description": "If provided and companyId is not, creates new company"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": [
+						"firstName",
+						"lastName",
+						"email",
+						"phone",
+						"jobTitle",
+						"companyId",
+						"companyName"
+					]
+				}
+			}
+		},
+		"updateContact": {
+			"description": "Update an existing contact's information",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"contactId": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"updates": {
+							"_def": {
+								"unknownKeys": "strip",
+								"catchall": {
+									"_def": {
+										"typeName": "ZodNever"
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodObject"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							},
+							"_cached": {
+								"shape": {
+									"firstName": {
+										"_def": {
+											"innerType": {
+												"_def": {
+													"checks": [],
+													"typeName": "ZodString",
+													"coerce": false
+												},
+												"~standard": {
+													"version": 1,
+													"vendor": "zod"
+												}
+											},
+											"typeName": "ZodOptional"
+										},
+										"~standard": {
+											"version": 1,
+											"vendor": "zod"
+										}
+									},
+									"lastName": {
+										"_def": {
+											"innerType": {
+												"_def": {
+													"checks": [],
+													"typeName": "ZodString",
+													"coerce": false
+												},
+												"~standard": {
+													"version": 1,
+													"vendor": "zod"
+												}
+											},
+											"typeName": "ZodOptional"
+										},
+										"~standard": {
+											"version": 1,
+											"vendor": "zod"
+										}
+									},
+									"email": {
+										"_def": {
+											"innerType": {
+												"_def": {
+													"checks": [],
+													"typeName": "ZodString",
+													"coerce": false
+												},
+												"~standard": {
+													"version": 1,
+													"vendor": "zod"
+												}
+											},
+											"typeName": "ZodOptional"
+										},
+										"~standard": {
+											"version": 1,
+											"vendor": "zod"
+										}
+									},
+									"phone": {
+										"_def": {
+											"innerType": {
+												"_def": {
+													"checks": [],
+													"typeName": "ZodString",
+													"coerce": false
+												},
+												"~standard": {
+													"version": 1,
+													"vendor": "zod"
+												}
+											},
+											"typeName": "ZodOptional"
+										},
+										"~standard": {
+											"version": 1,
+											"vendor": "zod"
+										}
+									},
+									"jobTitle": {
+										"_def": {
+											"innerType": {
+												"_def": {
+													"checks": [],
+													"typeName": "ZodString",
+													"coerce": false
+												},
+												"~standard": {
+													"version": 1,
+													"vendor": "zod"
+												}
+											},
+											"typeName": "ZodOptional"
+										},
+										"~standard": {
+											"version": 1,
+											"vendor": "zod"
+										}
+									},
+									"companyId": {
+										"_def": {
+											"innerType": {
+												"_def": {
+													"checks": [],
+													"typeName": "ZodString",
+													"coerce": false
+												},
+												"~standard": {
+													"version": 1,
+													"vendor": "zod"
+												}
+											},
+											"typeName": "ZodOptional"
+										},
+										"~standard": {
+											"version": 1,
+											"vendor": "zod"
+										}
+									}
+								},
+								"keys": [
+									"firstName",
+									"lastName",
+									"email",
+									"phone",
+									"jobTitle",
+									"companyId"
+								]
+							}
+						}
+					},
+					"keys": ["contactId", "updates"]
+				}
+			}
+		},
+		"getContactDetails": {
+			"description": "Get full details about a contact including interactions, notes, and pending notifications",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"contactId": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": ["contactId"]
+				}
+			}
+		},
+		"deleteContact": {
+			"description": "Request to delete a contact. Returns contact details for user confirmation. Call confirmDeleteContact after user confirms.",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"contactId": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": ["contactId"]
+				}
+			}
+		},
+		"confirmDeleteContact": {
+			"description": "Execute contact deletion after user has confirmed. Only call this after deleteContact and user confirmation.",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"contactId": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": ["contactId"]
+				}
+			}
+		},
+		"listCompanies": {
+			"description": "List all companies",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": null
+			}
+		},
+		"createCompany": {
+			"description": "Create a new company. Search first to avoid duplicates.",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"name": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"website": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"industry": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"address": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"description": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": ["name", "website", "industry", "address", "description"]
+				}
+			}
+		},
+		"updateCompany": {
+			"description": "Update an existing company's information",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": null
+			}
+		},
+		"getCompanyDetails": {
+			"description": "Get full details about a company including all contacts",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"companyId": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": ["companyId"]
+				}
+			}
+		},
+		"deleteCompany": {
+			"description": "Request to delete a company. Returns company details for user confirmation. Call confirmDeleteCompany after user confirms.",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"companyId": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": ["companyId"]
+				}
+			}
+		},
+		"confirmDeleteCompany": {
+			"description": "Execute company deletion after user has confirmed. Only call this after deleteCompany and user confirmation.",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"companyId": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": ["companyId"]
+				}
+			}
+		},
+		"addInteraction": {
+			"description": "Log an interaction (call, email, meeting) with a contact",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"contactId": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"type": {
+							"_def": {
+								"values": ["call", "email", "meeting", "other"],
+								"typeName": "ZodEnum"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							},
+							"_cache": {}
+						},
+						"summary": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"outcome": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"sentiment": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"values": ["positive", "neutral", "negative"],
+										"typeName": "ZodEnum"
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"occurredAt": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional",
+								"description": "When it happened, e.g. \"yesterday\", \"last Tuesday\""
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": [
+						"contactId",
+						"type",
+						"summary",
+						"outcome",
+						"sentiment",
+						"occurredAt"
+					]
+				}
+			}
+		},
+		"updateInteraction": {
+			"description": "Update an existing interaction",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": null
+			}
+		},
+		"getInteractions": {
+			"description": "Get interactions for a contact",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": null
+			}
+		},
+		"addNote": {
+			"description": "Add a note to a contact, company, or interaction",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": null
+			}
+		},
+		"createNotification": {
+			"description": "Create a follow-up reminder or task",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": {
+					"shape": {
+						"title": {
+							"_def": {
+								"checks": [],
+								"typeName": "ZodString",
+								"coerce": false
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"type": {
+							"_def": {
+								"values": [
+									"follow_up_email",
+									"follow_up_call",
+									"follow_up_meeting",
+									"general"
+								],
+								"typeName": "ZodEnum"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							},
+							"_cache": {}
+						},
+						"contactId": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"interactionId": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"description": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional"
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						},
+						"dueDate": {
+							"_def": {
+								"innerType": {
+									"_def": {
+										"checks": [],
+										"typeName": "ZodString",
+										"coerce": false
+									},
+									"~standard": {
+										"version": 1,
+										"vendor": "zod"
+									}
+								},
+								"typeName": "ZodOptional",
+								"description": "When to follow up, e.g. \"tomorrow\", \"next week\""
+							},
+							"~standard": {
+								"version": 1,
+								"vendor": "zod"
+							}
+						}
+					},
+					"keys": [
+						"title",
+						"type",
+						"contactId",
+						"interactionId",
+						"description",
+						"dueDate"
+					]
+				}
+			}
+		},
+		"getNotifications": {
+			"description": "Get pending follow-up reminders and tasks",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": null
+			}
+		},
+		"completeNotification": {
+			"description": "Mark a notification/reminder as complete",
+			"inputSchema": {
+				"_def": {
+					"unknownKeys": "strip",
+					"catchall": {
+						"_def": {
+							"typeName": "ZodNever"
+						},
+						"~standard": {
+							"version": 1,
+							"vendor": "zod"
+						}
+					},
+					"typeName": "ZodObject"
+				},
+				"~standard": {
+					"version": 1,
+					"vendor": "zod"
+				},
+				"_cached": null
+			}
+		}
+	},
+	"baseStream": {}
+}

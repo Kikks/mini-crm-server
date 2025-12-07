@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1764718318742,
+      "tag": "0000_keen_scarecrow",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1764721432171,
+      "tag": "0001_married_landau",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1764722000000,
+      "tag": "0002_add_notes_fts",
+      "breakpoints": true
+    }
+  ]
+}
