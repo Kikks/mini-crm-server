@@ -44,12 +44,23 @@ export function getContactTools(userId: string): Record<string, any> {
 			jobTitle,
 		}) => {
 			let finalCompanyId = companyId;
+
 			if (companyName && !companyId) {
-				const [company] = await db
-					.insert(companies)
-					.values({ userId, name: companyName })
-					.returning();
-				finalCompanyId = company.id;
+				// First find the company by name
+				const company = await db.query.companies.findFirst({
+					where: eq(companies.name, companyName),
+				});
+
+				if (company) {
+					finalCompanyId = company.id;
+				} else {
+					// If no company found, create a new one
+					const [company] = await db
+						.insert(companies)
+						.values({ userId, name: companyName })
+						.returning();
+					finalCompanyId = company.id;
+				}
 			}
 
 			const [contact] = await db

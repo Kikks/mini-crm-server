@@ -69,7 +69,7 @@ export async function getAllContacts(
 	userId: string,
 	pagination: PaginationParams,
 	companyId?: string,
-	sortParams?: ContactSortParams,
+	sortParams: ContactSortParams = { sortBy: "name", sortOrder: "asc" },
 	query?: string
 ): Promise<
 	PaginatedResponse<

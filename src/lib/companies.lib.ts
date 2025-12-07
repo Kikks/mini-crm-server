@@ -60,7 +60,7 @@ export async function getCompany(userId: string, companyId: string) {
 export async function getAllCompanies(
 	userId: string,
 	pagination: PaginationParams,
-	sortParams?: CompanySortParams,
+	sortParams: CompanySortParams = { sortBy: "name", sortOrder: "asc" },
 	query?: string
 ): Promise<
 	PaginatedResponse<
