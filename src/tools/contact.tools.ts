@@ -48,7 +48,10 @@ export function getContactTools(userId: string): Record<string, any> {
 			if (companyName && !companyId) {
 				// First find the company by name
 				const company = await db.query.companies.findFirst({
-					where: eq(companies.name, companyName),
+					where: and(
+						eq(companies.name, companyName),
+						eq(companies.userId, userId)
+					),
 				});
 
 				if (company) {
