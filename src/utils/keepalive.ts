@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { sql } from "drizzle-orm";
 import { db } from "../db/index.js";
 import { logger } from "./logger.js";
@@ -86,3 +87,42 @@ export function getKeepAliveStatus(): {
 		daysUntilNextPing: daysUntilNextPing > 0 ? daysUntilNextPing : 0,
 	};
 }
+
+export const keepAliveHandler = async (req: Request, res: Response) => {
+	try {
+		const keepAliveSecret = process.env.KEEPALIVE_SECRET;
+		if (keepAliveSecret) {
+			const providedSecret =
+				req.query.secret || req.headers["x-keepalive-secret"];
+			if (providedSecret !== keepAliveSecret) {
+				return res.status(401).json({
+					status: "error",
+					message: "Unauthorized: Invalid keep-alive secret",
+				});
+			}
+		}
+
+		const dbPingResult = await pingDatabase();
+		const status = getKeepAliveStatus();
+
+		res.json({
+			status: "ok",
+			timestamp: new Date().toISOString(),
+			database: {
+				pinged: dbPingResult.pinged,
+				success: dbPingResult.success,
+				message: dbPingResult.message,
+				lastPing: status.lastPing?.toISOString() || null,
+				nextPingDue: status.nextPingDue?.toISOString() || null,
+				daysUntilNextPing: status.daysUntilNextPing,
+			},
+		});
+	} catch (error) {
+		logger.error("Keep-alive endpoint error:", error);
+		res.json({
+			status: "ok",
+			timestamp: new Date().toISOString(),
+			error: "Internal error occurred, but endpoint is functional",
+		});
+	}
+};
